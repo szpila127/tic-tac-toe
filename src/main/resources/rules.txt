@@ -1,0 +1,10 @@
+1. Pole gry to plansza w kształcie kwadratu,
+   podzielona na 9 równych pól poprzez 4 przecinające się linie:
+   2 pionowo i 2 poziomo, z których każda jest podzielona przez dwie
+   prostopadłe do niej linie na trzy równe części.
+
+2. Na poszczególnych polach gracze stawiają na przemian kółko i krzyżyk.
+
+3. Gdy któryś z graczy stworzy linię trzech krzyżyków lub trzech kółek,
+   przekreśla ją i zostaje zwycięzcą. Gdy wszystkie pola są zajęte i nie
+   zostaje utworzona linia, gra kończy się remisem.
