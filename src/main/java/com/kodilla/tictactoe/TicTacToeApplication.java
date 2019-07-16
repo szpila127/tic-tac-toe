@@ -14,7 +14,6 @@ public class TicTacToeApplication extends Application {
 
     private static Image back = new Image("file:src/main/resources/back.png");
 
-
     private static Parent createScene() {
 
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
