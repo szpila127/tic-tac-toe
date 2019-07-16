@@ -9,10 +9,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane {
-    private Image cross = new Image("file:src/main/resources/cross.png");
-    private Image circle = new Image("file:src/main/resources/circle.png");
 
-    public Tile() {
+    public static Image cross = new Image("file:src/main/resources/cross.png");
+    public static Image circle = new Image("file:src/main/resources/circle.png");
+    public FieldValue fieldValue;
+
+    public Tile(FieldValue fieldValue) {
+        this.fieldValue = fieldValue;
+
         Rectangle border = new Rectangle(200, 200);
         border.setFill(null);
         border.setStroke(Color.BLACK);
@@ -20,20 +24,36 @@ public class Tile extends StackPane {
         setAlignment(Pos.CENTER);
         getChildren().addAll(border);
 
+        if (FieldValue.CROSS == fieldValue) {
+            border.setFill(new ImagePattern(cross));
+        } else if (FieldValue.CIRCLE == fieldValue) {
+            border.setFill(new ImagePattern(circle));
+        }
+
         setOnMouseClicked(action -> {
+
             if (action.getButton() == MouseButton.PRIMARY) {
+                if (!TicTacToeApplication.turnX) {
+                    return;
+                }
+                if (this.fieldValue == FieldValue.CIRCLE) {
+                    return;
+                }
+                this.fieldValue = FieldValue.CROSS;
                 border.setFill(new ImagePattern(cross));
+                TicTacToeApplication.turnX = false;
+
             } else if (action.getButton() == MouseButton.SECONDARY) {
+                if (TicTacToeApplication.turnX) {
+                    return;
+                }
+                if (this.fieldValue == FieldValue.CROSS) {
+                    return;
+                }
+                this.fieldValue = FieldValue.CIRCLE;
                 border.setFill(new ImagePattern(circle));
+                TicTacToeApplication.turnX = true;
             }
         });
-    }
-
-    private void drawX() {
-
-    }
-
-    private void drawO() {
-
     }
 }

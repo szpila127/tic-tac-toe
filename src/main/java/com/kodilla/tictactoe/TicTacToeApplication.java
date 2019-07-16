@@ -8,11 +8,16 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 
 @SpringBootApplication
 public class TicTacToeApplication extends Application {
 
     private static Image back = new Image("file:src/main/resources/back.png");
+    public static Board board = new Board();
+    public static boolean turnX = true;
 
     private static Parent createScene() {
 
@@ -20,22 +25,15 @@ public class TicTacToeApplication extends Application {
         BackgroundImage backgroundImage = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
 
-        GridPane root = new GridPane();
+        Pane root = new Pane();
         root.setPrefSize(600, 600);
         root.setBackground(background);
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++ ) {
-                Tile tile = new Tile();
-                tile.setTranslateX(i * 200);
-                tile.setTranslateY(j * 200);
-
-                root.getChildren().addAll(tile);
-            }
-        }
+        root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
 
         return root;
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
