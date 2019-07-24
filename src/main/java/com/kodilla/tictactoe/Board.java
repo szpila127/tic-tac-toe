@@ -13,6 +13,6 @@ public class Board {
                 fields[i][j] = tile;
             }
         }
-        fields[1][1] = new Tile(FieldValue.CROSS);
+//         fields[0][1] = new Tile(FieldValue.CIRCLE);
     }
 }

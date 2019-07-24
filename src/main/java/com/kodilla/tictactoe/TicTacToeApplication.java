@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,6 @@ public class TicTacToeApplication extends Application {
 
         return root;
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
