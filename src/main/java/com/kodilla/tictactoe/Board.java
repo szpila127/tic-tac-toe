@@ -1,10 +1,10 @@
 package com.kodilla.tictactoe;
 
-public class Board {
+class Board {
 
-    public Tile[][] fields = new Tile[3][3];
+    Tile[][] fields = new Tile[3][3];
 
-    public Board() {
+    Board() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 Tile tile = new Tile(FieldValue.EMPTY);
@@ -13,6 +13,5 @@ public class Board {
                 fields[i][j] = tile;
             }
         }
-//         fields[0][1] = new Tile(FieldValue.CIRCLE);
     }
 }

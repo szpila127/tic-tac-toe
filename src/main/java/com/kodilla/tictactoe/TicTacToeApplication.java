@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class TicTacToeApplication extends Application {
 
     private static Image back = new Image("file:src/main/resources/back.png");
-    public static Board board = new Board();
-    public static boolean turnX = true;
+    private static Board board = new Board();
+    static boolean turnX = true;
 
     private static Parent createScene() {
 

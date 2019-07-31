@@ -8,50 +8,52 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class Tile extends StackPane {
+class Tile extends StackPane {
 
-    public static Image cross = new Image("file:src/main/resources/cross.png");
-    public static Image circle = new Image("file:src/main/resources/circle.png");
-    public FieldValue fieldValue;
+    private static Image cross = new Image("file:src/main/resources/cross.png");
+    private static Image circle = new Image("file:src/main/resources/circle.png");
+    private FieldValue fieldValue;
 
-    public Tile(FieldValue fieldValue) {
+    private FieldValue getFieldValue() {
+        return fieldValue;
+    }
+
+    private void setFieldValue(FieldValue fieldValue) {
+        this.fieldValue = fieldValue;
+    }
+
+    Tile(FieldValue fieldValue) {
         this.fieldValue = fieldValue;
 
-        Rectangle border = new Rectangle(200, 200);
-        border.setFill(null);
-        border.setStroke(Color.BLACK);
+        Rectangle rectangle = new Rectangle(200, 200);
+        rectangle.setFill(null);
+        rectangle.setStroke(Color.BLACK);
 
         setAlignment(Pos.CENTER);
-        getChildren().addAll(border);
+        getChildren().addAll(rectangle);
 
-        if (FieldValue.CROSS == fieldValue) {
-            border.setFill(new ImagePattern(cross));
-        } else if (FieldValue.CIRCLE == fieldValue) {
-            border.setFill(new ImagePattern(circle));
-        }
+//        if (fieldValue == FieldValue.CROSS) {
+//            rectangle.setFill(new ImagePattern(cross));
+//        } else if (fieldValue == FieldValue.CIRCLE) {
+//            rectangle.setFill(new ImagePattern(circle));
+//        }
 
         setOnMouseClicked(action -> {
 
             if (action.getButton() == MouseButton.PRIMARY) {
-                if (!TicTacToeApplication.turnX) {
+                if (!TicTacToeApplication.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
                     return;
                 }
-                if (this.fieldValue == FieldValue.CIRCLE) {
-                    return;
-                }
-                this.fieldValue = FieldValue.CROSS;
-                border.setFill(new ImagePattern(cross));
+                setFieldValue(FieldValue.CROSS);
+                rectangle.setFill(new ImagePattern(cross));
                 TicTacToeApplication.turnX = false;
 
             } else if (action.getButton() == MouseButton.SECONDARY) {
-                if (TicTacToeApplication.turnX) {
+                if (TicTacToeApplication.turnX || getFieldValue() == FieldValue.CROSS || getFieldValue() == FieldValue.CIRCLE) {
                     return;
                 }
-                if (this.fieldValue == FieldValue.CROSS) {
-                    return;
-                }
-                this.fieldValue = FieldValue.CIRCLE;
-                border.setFill(new ImagePattern(circle));
+                setFieldValue(FieldValue.CIRCLE);
+                rectangle.setFill(new ImagePattern(circle));
                 TicTacToeApplication.turnX = true;
             }
         });
