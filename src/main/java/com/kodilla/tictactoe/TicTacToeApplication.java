@@ -17,6 +17,7 @@ public class TicTacToeApplication extends Application {
     private static Image back = new Image("file:src/main/resources/back.png");
     private static Board board = new Board();
     static boolean turnX = true;
+    static boolean possibleMove = true;
 
     private static Parent createScene() {
 
@@ -25,7 +26,7 @@ public class TicTacToeApplication extends Application {
         Background background = new Background(backgroundImage);
 
         Pane root = new Pane();
-        root.setPrefSize(600, 600);
+        root.setPrefSize(600, 650);
         root.setBackground(background);
 
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));

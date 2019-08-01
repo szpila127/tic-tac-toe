@@ -8,13 +8,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-class Tile extends StackPane {
+public class Tile extends StackPane {
 
     private static Image cross = new Image("file:src/main/resources/cross.png");
     private static Image circle = new Image("file:src/main/resources/circle.png");
     private FieldValue fieldValue;
 
-    private FieldValue getFieldValue() {
+    FieldValue getFieldValue() {
         return fieldValue;
     }
 
@@ -39,6 +39,8 @@ class Tile extends StackPane {
 //        }
 
         setOnMouseClicked(action -> {
+            if (!TicTacToeApplication.possibleMove)
+                return;
 
             if (action.getButton() == MouseButton.PRIMARY) {
                 if (!TicTacToeApplication.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
