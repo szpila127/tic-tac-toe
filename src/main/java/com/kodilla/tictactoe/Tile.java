@@ -14,6 +14,7 @@ public class Tile extends StackPane {
     private static Image circle = new Image("file:src/main/resources/circle.png");
     private FieldValue fieldValue;
 
+
     FieldValue getFieldValue() {
         return fieldValue;
     }
