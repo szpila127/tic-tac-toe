@@ -8,9 +8,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -18,9 +16,9 @@ import java.util.stream.Collectors;
 public class TicTacToeApplication extends Application {
 
     private static Image back = new Image("file:src/main/resources/back.png");
-    private static Board board = new Board();
-    static boolean turnX = true;
-    static boolean possibleMove = true;
+    public static Board board = new Board();
+    public static boolean turnX = true;
+    public static boolean possibleMove = true;
 
     private static Parent createScene() {
 
@@ -48,19 +46,6 @@ public class TicTacToeApplication extends Application {
     }
 
     public static void main(String[] args) {
-
-        List<State> states = new ArrayList<>();
-
-        for (int y = 0; y < 3; y++) {
-            states.add(new State(board.fields[0][y], board.fields[1][y], board.fields[2][y]));
-        }
-
-        for (int x = 0; x < 3; x++) {
-            states.add(new State(board.fields[x][0], board.fields[x][1], board.fields[x][2]));
-        }
-
-        states.add(new State(board.fields[0][0], board.fields[1][1], board.fields[2][2]));
-        states.add(new State(board.fields[2][0], board.fields[1][1], board.fields[0][2]));
         launch(args);
     }
 }

@@ -33,17 +33,13 @@ public class Tile extends StackPane {
         setAlignment(Pos.CENTER);
         getChildren().addAll(rectangle);
 
-//        if (fieldValue == FieldValue.CROSS) {
-//            rectangle.setFill(new ImagePattern(cross));
-//        } else if (fieldValue == FieldValue.CIRCLE) {
-//            rectangle.setFill(new ImagePattern(circle));
-//        }
-
         setOnMouseClicked(action -> {
-            if (!TicTacToeApplication.possibleMove)
+            if (!TicTacToeApplication.possibleMove) {
                 return;
+            }
 
             if (action.getButton() == MouseButton.PRIMARY) {
+
                 if (!TicTacToeApplication.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
                     return;
                 }
@@ -58,7 +54,24 @@ public class Tile extends StackPane {
                 setFieldValue(FieldValue.CIRCLE);
                 rectangle.setFill(new ImagePattern(circle));
                 TicTacToeApplication.turnX = true;
+
+            }
+            Score score = State.gameResult();
+            System.out.println(score);
+            if (score == Score.O_WIN) {
+                TicTacToeApplication.possibleMove = false;
+                return;
+            }
+
+            if (score == Score.X_WIN) {
+                TicTacToeApplication.possibleMove = false;
+                return;
+            }
+
+            if (score == Score.EVEN) {
+                TicTacToeApplication.possibleMove = false;
             }
         });
+
     }
 }
