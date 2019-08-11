@@ -1,5 +1,7 @@
 package com.kodilla.tictactoe;
 
+import javafx.scene.paint.Color;
+
 public class State {
 
     public static void gameReset() {
@@ -7,9 +9,11 @@ public class State {
 
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
-            fields[x][y].setFieldValue(FieldValue.EMPTY);
-            TicTacToeApplication.turnX = true;
-            TicTacToeApplication.possibleMove = true;
+                fields[x][y].setFieldValue(FieldValue.EMPTY);
+                TicTacToeApplication.turnX = true;
+                TicTacToeApplication.possibleMove = true;
+                TicTacToeApplication.label.setText("CROSS TURN");
+                TicTacToeApplication.label.setTextFill(Color.RED);
             }
         }
     }
@@ -74,5 +78,19 @@ public class State {
             }
         }
         return Score.IN_PROGRESS;
+    }
+
+    public static void changeLabel() {
+
+        Score score = State.gameResult();
+
+        if (score == Score.X_WIN) {
+
+        }
+        if (score == Score.O_WIN) {
+
+        }
+
+
     }
 }

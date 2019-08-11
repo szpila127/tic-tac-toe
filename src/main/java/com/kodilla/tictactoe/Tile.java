@@ -14,7 +14,6 @@ public class Tile extends StackPane {
     private static Image circle = new Image("file:src/main/resources/circle.png");
     private FieldValue fieldValue;
 
-
     FieldValue getFieldValue() {
         return fieldValue;
     }
@@ -26,7 +25,9 @@ public class Tile extends StackPane {
     Tile(FieldValue fieldValue) {
         this.fieldValue = fieldValue;
 
-        Rectangle rectangle = new Rectangle(200, 200);
+        Rectangle rectangle = new Rectangle();
+        rectangle.setHeight(200);
+        rectangle.setWidth(200);
         rectangle.setFill(null);
         rectangle.setStroke(Color.BLACK);
 
@@ -38,6 +39,7 @@ public class Tile extends StackPane {
         }
 
         setOnMouseClicked(action -> {
+            State.changeLabel();
             if (!TicTacToeApplication.possibleMove) {
                 return;
             }
@@ -58,22 +60,39 @@ public class Tile extends StackPane {
                 setFieldValue(FieldValue.CIRCLE);
                 rectangle.setFill(new ImagePattern(circle));
                 TicTacToeApplication.turnX = true;
-
             }
+
             Score score = State.gameResult();
             System.out.println(score);
             if (score == Score.O_WIN) {
                 TicTacToeApplication.possibleMove = false;
+                TicTacToeApplication.label.setText("WINNER: O");
+                TicTacToeApplication.label.setTextFill(Color.BLACK);
                 return;
             }
 
             if (score == Score.X_WIN) {
                 TicTacToeApplication.possibleMove = false;
+                TicTacToeApplication.label.setText("WINNER: X");
+                TicTacToeApplication.label.setTextFill(Color.RED);
                 return;
             }
 
             if (score == Score.EVEN) {
+                TicTacToeApplication.label.setText("EVEN");
+                TicTacToeApplication.label.setTextFill(Color.GREEN);
                 TicTacToeApplication.possibleMove = false;
+            }
+
+            if (score == Score.IN_PROGRESS) {
+                if (TicTacToeApplication.turnX) {
+                    TicTacToeApplication.label.setText("CROSS TURN");
+                    TicTacToeApplication.label.setTextFill(Color.RED);
+                }
+                if (!TicTacToeApplication.turnX) {
+                    TicTacToeApplication.label.setText("CIRCLE TURN");
+                    TicTacToeApplication.label.setTextFill(Color.BLACK);
+                }
             }
         });
     }

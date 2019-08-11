@@ -5,9 +5,11 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -21,6 +23,7 @@ public class TicTacToeApplication extends Application {
     public static Board board = new Board();
     public static boolean turnX = true;
     public static boolean possibleMove = true;
+    public static Label label = new Label();
 
     private static Parent createScene() {
 
@@ -36,23 +39,29 @@ public class TicTacToeApplication extends Application {
         reset.setText("RESET");
         reset.setLayoutX(0);
         reset.setLayoutY(601);
-        reset.setPrefSize(150, 50);
+        reset.setPrefSize(150, 49);
         reset.setOnAction(action -> {
-                State.gameReset();
+            State.gameReset();
         });
 
         Button exit = new Button();
         exit.setText("EXIT");
         exit.setLayoutX(450);
         exit.setLayoutY(601);
-        exit.setPrefSize(150, 50);
+        exit.setPrefSize(150, 49);
         exit.setOnAction(action -> {
             Platform.exit();
         });
 
+        label.setText("CROSS TURN");
+        label.setTextFill(Color.RED);
+        label.setFont(new Font("Arial", 35));
+        label.layoutXProperty().bind(root.widthProperty().subtract(label.widthProperty()).divide(2));
+        label.setLayoutY(605);
+
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
 
-        root.getChildren().addAll(reset, exit);
+        root.getChildren().addAll(reset, exit, label);
 
         return root;
     }
