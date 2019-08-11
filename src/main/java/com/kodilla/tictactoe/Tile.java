@@ -42,9 +42,7 @@ public class Tile extends StackPane {
             if (!TicTacToeApplication.possibleMove) {
                 return;
             }
-
             if (action.getButton() == MouseButton.PRIMARY) {
-
                 if (!TicTacToeApplication.turnX || getFieldValue() == FieldValue.CIRCLE || getFieldValue() == FieldValue.CROSS) {
                     return;
                 }
@@ -69,21 +67,18 @@ public class Tile extends StackPane {
                 TicTacToeApplication.label.setTextFill(Color.BLACK);
                 return;
             }
-
             if (score == Score.X_WIN) {
                 TicTacToeApplication.possibleMove = false;
                 TicTacToeApplication.label.setText("WINNER: X");
                 TicTacToeApplication.label.setTextFill(Color.RED);
                 return;
             }
-
             if (score == Score.EVEN) {
                 TicTacToeApplication.possibleMove = false;
                 TicTacToeApplication.label.setText("EVEN");
                 TicTacToeApplication.label.setTextFill(Color.GREEN);
 
             }
-
             if (score == Score.IN_PROGRESS) {
                 if (TicTacToeApplication.turnX) {
                     TicTacToeApplication.label.setText("CROSS TURN");

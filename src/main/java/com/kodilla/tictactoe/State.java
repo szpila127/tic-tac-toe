@@ -34,7 +34,6 @@ public class State {
                 }
             }
         }
-
         for (int x = 0; x < 3; x++) {
             if (fields[x][0].getFieldValue() == fields[x][1]
                     .getFieldValue()
@@ -46,7 +45,6 @@ public class State {
                 }
             }
         }
-
         if (fields[0][0].getFieldValue() == fields[1][1].getFieldValue() &&
                 fields[0][0].getFieldValue() == fields[2][2].getFieldValue()) {
             if (fields[0][0].getFieldValue() == FieldValue.CIRCLE) {
@@ -55,7 +53,6 @@ public class State {
                 return Score.X_WIN;
             }
         }
-
         if (fields[2][0].getFieldValue() == fields[1][1].getFieldValue() &&
                 fields[2][0].getFieldValue() == fields[0][2].getFieldValue()) {
             if (fields[2][0].getFieldValue() == FieldValue.CIRCLE) {
@@ -64,7 +61,6 @@ public class State {
                 return Score.X_WIN;
             }
         }
-
         boolean isEmpty = false;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
@@ -76,7 +72,6 @@ public class State {
         if (!isEmpty) {
             return Score.EVEN;
         }
-
         return Score.IN_PROGRESS;
     }
 }
