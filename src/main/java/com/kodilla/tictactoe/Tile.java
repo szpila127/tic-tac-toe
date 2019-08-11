@@ -39,7 +39,6 @@ public class Tile extends StackPane {
         }
 
         setOnMouseClicked(action -> {
-            State.changeLabel();
             if (!TicTacToeApplication.possibleMove) {
                 return;
             }
@@ -79,9 +78,10 @@ public class Tile extends StackPane {
             }
 
             if (score == Score.EVEN) {
+                TicTacToeApplication.possibleMove = false;
                 TicTacToeApplication.label.setText("EVEN");
                 TicTacToeApplication.label.setTextFill(Color.GREEN);
-                TicTacToeApplication.possibleMove = false;
+
             }
 
             if (score == Score.IN_PROGRESS) {

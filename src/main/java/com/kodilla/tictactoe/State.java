@@ -79,18 +79,4 @@ public class State {
         }
         return Score.IN_PROGRESS;
     }
-
-    public static void changeLabel() {
-
-        Score score = State.gameResult();
-
-        if (score == Score.X_WIN) {
-
-        }
-        if (score == Score.O_WIN) {
-
-        }
-
-
-    }
 }
