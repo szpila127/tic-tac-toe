@@ -1,6 +1,7 @@
 package com.kodilla.tictactoe;
 
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class State {
 
@@ -10,12 +11,14 @@ public class State {
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 fields[x][y].setFieldValue(FieldValue.EMPTY);
-                TicTacToeApplication.turnX = true;
-                TicTacToeApplication.possibleMove = true;
-                TicTacToeApplication.label.setText("CROSS TURN");
-                TicTacToeApplication.label.setTextFill(Color.RED);
+                Rectangle node = (Rectangle) fields[x][y].getChildren().get(0);
+                node.setFill(null);
             }
         }
+        TicTacToeApplication.turnX = true;
+        TicTacToeApplication.possibleMove = true;
+        TicTacToeApplication.label.setText("CROSS TURN");
+        TicTacToeApplication.label.setTextFill(Color.RED);
     }
 
     public static Score gameResult() {
@@ -62,18 +65,23 @@ public class State {
             }
         }
 
+        boolean isEmpty;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                if (fields[0][0].getFieldValue() != FieldValue.EMPTY
-                        && fields[0][1].getFieldValue() != FieldValue.EMPTY
-                        && fields[0][2].getFieldValue() != FieldValue.EMPTY
-                        && fields[1][0].getFieldValue() != FieldValue.EMPTY
-                        && fields[1][1].getFieldValue() != FieldValue.EMPTY
-                        && fields[1][2].getFieldValue() != FieldValue.EMPTY
-                        && fields[2][0].getFieldValue() != FieldValue.EMPTY
-                        && fields[2][1].getFieldValue() != FieldValue.EMPTY
-                        && fields[2][2].getFieldValue() != FieldValue.EMPTY) {
+                if (fields[x][y].getFieldValue() == FieldValue.EMPTY) {
+                    isEmpty = true;
+                }
+                if (!isEmpty) {
                     return Score.EVEN;
+//                        && fields[0][1].getFieldValue() != FieldValue.EMPTY
+//                        && fields[0][2].getFieldValue() != FieldValue.EMPTY
+//                        && fields[1][0].getFieldValue() != FieldValue.EMPTY
+//                        && fields[1][1].getFieldValue() != FieldValue.EMPTY
+//                        && fields[1][2].getFieldValue() != FieldValue.EMPTY
+//                        && fields[2][0].getFieldValue() != FieldValue.EMPTY
+//                        && fields[2][1].getFieldValue() != FieldValue.EMPTY
+//                        && fields[2][2].getFieldValue() != FieldValue.EMPTY) {
+//                    return Score.EVEN;
                 }
             }
         }
