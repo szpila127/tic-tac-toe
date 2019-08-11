@@ -19,7 +19,7 @@ public class Tile extends StackPane {
         return fieldValue;
     }
 
-    private void setFieldValue(FieldValue fieldValue) {
+    public void setFieldValue(FieldValue fieldValue) {
         this.fieldValue = fieldValue;
     }
 
@@ -32,6 +32,10 @@ public class Tile extends StackPane {
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(rectangle);
+
+        if (getFieldValue() == FieldValue.EMPTY) {
+            rectangle.setFill(null);
+        }
 
         setOnMouseClicked(action -> {
             if (!TicTacToeApplication.possibleMove) {
@@ -72,6 +76,5 @@ public class Tile extends StackPane {
                 TicTacToeApplication.possibleMove = false;
             }
         });
-
     }
 }

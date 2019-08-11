@@ -1,16 +1,18 @@
 package com.kodilla.tictactoe;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
 
 @SpringBootApplication
 public class TicTacToeApplication extends Application {
@@ -30,7 +32,27 @@ public class TicTacToeApplication extends Application {
         root.setPrefSize(600, 650);
         root.setBackground(background);
 
+        Button reset = new Button();
+        reset.setText("RESET");
+        reset.setLayoutX(0);
+        reset.setLayoutY(601);
+        reset.setPrefSize(150, 50);
+        reset.setOnAction(action -> {
+                State.gameReset();
+        });
+
+        Button exit = new Button();
+        exit.setText("EXIT");
+        exit.setLayoutX(450);
+        exit.setLayoutY(601);
+        exit.setPrefSize(150, 50);
+        exit.setOnAction(action -> {
+            Platform.exit();
+        });
+
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
+
+        root.getChildren().addAll(reset, exit);
 
         return root;
     }
