@@ -60,9 +60,7 @@ public class TicTacToeApplication extends Application {
         label.setLayoutY(605);
 
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
-
         root.getChildren().addAll(reset, exit, label);
-
         return root;
     }
 
