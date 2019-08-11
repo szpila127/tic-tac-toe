@@ -62,12 +62,18 @@ public class Tile extends StackPane {
             Score score = State.gameResult();
             System.out.println(score);
             if (score == Score.O_WIN) {
+                TicTacToeApplication.playerO.setCount(TicTacToeApplication.playerO.getCount() + 1);
+                TicTacToeApplication.counter.setText("CROSS[" + TicTacToeApplication.playerX.getCount()
+                        + "] : [" + TicTacToeApplication.playerO.getCount() + "]CIRCLE");
                 TicTacToeApplication.possibleMove = false;
                 TicTacToeApplication.label.setText("WINNER: O");
                 TicTacToeApplication.label.setTextFill(Color.BLACK);
                 return;
             }
             if (score == Score.X_WIN) {
+                TicTacToeApplication.playerX.setCount(TicTacToeApplication.playerX.getCount() + 1);
+                TicTacToeApplication.counter.setText("CROSS[" + TicTacToeApplication.playerX.getCount()
+                        + "] : [" + TicTacToeApplication.playerO.getCount() + "]CIRCLE");
                 TicTacToeApplication.possibleMove = false;
                 TicTacToeApplication.label.setText("WINNER: X");
                 TicTacToeApplication.label.setTextFill(Color.RED);
