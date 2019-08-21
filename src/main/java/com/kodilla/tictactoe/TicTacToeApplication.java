@@ -11,12 +11,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-@SpringBootApplication
 public class TicTacToeApplication extends Application {
 
     private static Image back = new Image("file:src/main/resources/back.png");
