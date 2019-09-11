@@ -25,6 +25,7 @@ public class TicTacToeApplication extends Application {
     public static Label counter = new Label();
     public static Counter playerX = new Counter(0);
     public static Counter playerO = new Counter(0);
+    public static boolean vsComputer = false;
 
     private static Parent createScene() {
 
@@ -39,19 +40,39 @@ public class TicTacToeApplication extends Application {
         Button reset = new Button();
         reset.setText("RESET");
         reset.setFont(new Font("Arial", 20));
-        reset.setLayoutX(0);
+        reset.setLayoutX(450);
         reset.setLayoutY(601);
-        reset.setPrefSize(150, 99);
+        reset.setPrefSize(150, 49);
         reset.setOnAction(action -> {
             State.gameReset();
+        });
+
+        Button vsComputer = new Button();
+        vsComputer.setText("vs. COMP");
+        vsComputer.setFont(new Font("Arial", 20));
+        vsComputer.setLayoutX(0);
+        vsComputer.setLayoutY(601);
+        vsComputer.setPrefSize(150, 49);
+        vsComputer.setOnAction(action -> {
+            TicTacToeApplication.vsComputer = true;
+        });
+
+        Button vsPlayer = new Button();
+        vsPlayer.setText("vs. PLAYER");
+        vsPlayer.setFont(new Font("Arial", 20));
+        vsPlayer.setLayoutX(0);
+        vsPlayer.setLayoutY(651);
+        vsPlayer.setPrefSize(150, 49);
+        vsPlayer.setOnAction(action -> {
+            TicTacToeApplication.vsComputer = false;
         });
 
         Button exit = new Button();
         exit.setText("EXIT");
         exit.setFont(new Font("Arial", 20));
         exit.setLayoutX(450);
-        exit.setLayoutY(601);
-        exit.setPrefSize(150, 99);
+        exit.setLayoutY(651);
+        exit.setPrefSize(150, 49);
         exit.setOnAction(action -> {
             Platform.exit();
         });
@@ -69,7 +90,7 @@ public class TicTacToeApplication extends Application {
         counter.setLayoutY(655);
 
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
-        root.getChildren().addAll(reset, exit, label, counter);
+        root.getChildren().addAll(reset, exit, vsComputer, vsPlayer, label, counter);
         return root;
     }
 
