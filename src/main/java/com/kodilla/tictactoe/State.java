@@ -17,7 +17,7 @@ public class State {
         }
         TicTacToeApplication.turnX = true;
         TicTacToeApplication.possibleMove = true;
-        TicTacToeApplication.label.setText("CROSS TURN");
+        TicTacToeApplication.label.setText("X TURN");
         TicTacToeApplication.label.setTextFill(Color.RED);
     }
 

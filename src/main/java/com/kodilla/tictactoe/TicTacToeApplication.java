@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
@@ -22,10 +23,11 @@ public class TicTacToeApplication extends Application {
     public static boolean turnX = true;
     public static boolean possibleMove = true;
     public static Label label = new Label();
+    public static Label vsWho = new Label();
     public static Label counter = new Label();
     public static Counter playerX = new Counter(0);
     public static Counter playerO = new Counter(0);
-    public static boolean vsComputer = false;
+    public static boolean vsComputer = true;
 
     private static Parent createScene() {
 
@@ -47,24 +49,38 @@ public class TicTacToeApplication extends Application {
             State.gameReset();
         });
 
-        Button vsComputer = new Button();
-        vsComputer.setText("vs. COMP");
-        vsComputer.setFont(new Font("Arial", 20));
-        vsComputer.setLayoutX(0);
-        vsComputer.setLayoutY(601);
-        vsComputer.setPrefSize(150, 49);
-        vsComputer.setOnAction(action -> {
-            TicTacToeApplication.vsComputer = true;
+        Button vsComp = new Button();
+        vsComp.setText("NEW GAME vs. COMP");
+        vsComp.setWrapText(true);
+        vsComp.setFont(new Font("Arial", 15));
+        vsComp.setLayoutX(0);
+        vsComp.setLayoutY(601);
+        vsComp.setPrefSize(150, 49);
+        vsComp.setOnAction(action -> {
+            vsComputer = true;
+            playerO.setCount(0);
+            playerX.setCount(0);
+            counter.setText("X  [" + playerX.getCount()
+                    + "] : [" + playerO.getCount() + "]  O");
+            vsWho.setText("YOU vs. COMPUTER");
+            State.gameReset();
         });
 
-        Button vsPlayer = new Button();
-        vsPlayer.setText("vs. PLAYER");
-        vsPlayer.setFont(new Font("Arial", 20));
-        vsPlayer.setLayoutX(0);
-        vsPlayer.setLayoutY(651);
-        vsPlayer.setPrefSize(150, 49);
-        vsPlayer.setOnAction(action -> {
-            TicTacToeApplication.vsComputer = false;
+        Button vsPlay = new Button();
+        vsPlay.setText("NEW GAME vs. PLAYER");
+        vsPlay.setWrapText(true);
+        vsPlay.setFont(new Font("Arial", 15));
+        vsPlay.setLayoutX(0);
+        vsPlay.setLayoutY(651);
+        vsPlay.setPrefSize(150, 49);
+        vsPlay.setOnAction(action -> {
+            vsComputer = false;
+            playerX.setCount(0);
+            playerO.setCount(0);
+            counter.setText("X  [" + playerX.getCount()
+                    + "] : [" + playerO.getCount() + "]  O");
+            vsWho.setText("YOU vs. 2nd PLAYER");
+            State.gameReset();
         });
 
         Button exit = new Button();
@@ -77,20 +93,26 @@ public class TicTacToeApplication extends Application {
             Platform.exit();
         });
 
-        label.setText("CROSS TURN");
+        label.setText("X TURN");
         label.setTextFill(Color.RED);
-        label.setFont(new Font("Arial", 35));
+        label.setFont(new Font("Arial", 28));
         label.layoutXProperty().bind(root.widthProperty().subtract(label.widthProperty()).divide(2));
         label.setLayoutY(605);
 
-        counter.setText("CROSS[" + playerX.getCount() + "] : [" + playerO.getCount() + "]CIRCLE");
+        counter.setText("X  [" + playerX.getCount() + "] : [" + playerO.getCount() + "]  O");
         counter.setTextFill(Color.BLACK);
-        counter.setFont(new Font("Arial", 25));
+        counter.setFont(new Font("Arial", 23));
         counter.layoutXProperty().bind(root.widthProperty().subtract(counter.widthProperty()).divide(2));
-        counter.setLayoutY(655);
+        counter.setLayoutY(638);
+
+        vsWho.setText("YOU vs. COMPUTER");
+        vsWho.setTextFill(Color.GREEN);
+        vsWho.setFont(new Font("Arial", 21));
+        vsWho.layoutXProperty().bind(root.widthProperty().subtract(vsWho.widthProperty()).divide(2));
+        vsWho.setLayoutY(671);
 
         root.getChildren().addAll(Arrays.stream(board.fields).flatMap(Arrays::stream).collect(Collectors.toList()));
-        root.getChildren().addAll(reset, exit, vsComputer, vsPlayer, label, counter);
+        root.getChildren().addAll(reset, exit, vsComp, vsPlay, label, counter, vsWho);
         return root;
     }
 
