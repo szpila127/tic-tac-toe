@@ -30,7 +30,6 @@ public class TicTacToeApplication extends Application {
     public static boolean vsComputer = true;
 
     private static Parent createScene() {
-
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(back, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
