@@ -100,8 +100,7 @@ public class Tile extends StackPane {
 
     public int randomNumber(int limit) {
         Random generator = new Random();
-        int random = generator.nextInt(limit);
-        return random;
+        return generator.nextInt(limit);
     }
 
     public void checkState() {
